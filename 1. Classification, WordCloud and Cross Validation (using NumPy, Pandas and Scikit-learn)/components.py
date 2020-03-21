@@ -11,12 +11,12 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import KFold
-from sklearn.cross_validation import cross_val_score, cross_val_predict
 from sklearn import metrics
 from sklearn.metrics import make_scorer
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
-from sklearn.model_selection import cross_validate
+from sklearn.model_selection import cross_validate, cross_val_score, cross_val_predict
+from sklearn import metrics
 import matplotlib.pyplot as plt
 
 train_data = pd.read_csv('train_set.csv', sep="\t")
@@ -34,6 +34,7 @@ scoring = {  'Precision': make_scorer(precision_score, average = 'macro'),
              'F-Measure': 'f1_macro',
              'Accuracy': 'accuracy' }
 
+# SVM
 sum_score_acc = []
 sum_score_f1 = []
 sum_score_rec = []
@@ -50,18 +51,22 @@ for x in array2:
     sum_score_f1.append(scores['test_F-Measure'].mean())
     sum_score_rec.append(scores['test_Recall'].mean())
 plt.plot(array2,sum_score_acc)
-	plt.xlabel('components')
-	plt.ylabel('accuracy')
-plt.plot(array2,sum_score_pre)
-	plt.xlabel('components')
-	plt.ylabel('precision')
-plt.plot(array2,sum_score_f1)
-	plt.xlabel('components')
-	plt.ylabel('f1')
-plt.plot(array2,sum_score_rec)
-	plt.xlabel('components')
-	plt.ylabel('recall')
+plt.xlabel('components')
+plt.ylabel('accuracy')
 
+plt.plot(array2,sum_score_pre)
+plt.xlabel('components')
+plt.ylabel('precision')
+
+plt.plot(array2,sum_score_f1)
+plt.xlabel('components')
+plt.ylabel('f1')
+
+plt.plot(array2,sum_score_rec)
+plt.xlabel('components')
+plt.ylabel('recall')
+
+# Random Forest Classifier
 rf_score_acc = []
 rf_score_f1 = []
 rf_score_rec = []
@@ -77,19 +82,25 @@ for x in array2:
     rf_score_pre.append(scores['test_Precision'].mean())
     rf_score_f1.append(scores['test_F-Measure'].mean())
     rf_score_rec.append(scores['test_Recall'].mean())
-plt.plot(array2,rf_score_acc)
-	plt.xlabel('components')
-	plt.ylabel('accuracy')
-plt.plot(array2,rf_score_pre)
-	plt.xlabel('components')
-	plt.ylabel('precision')
-plt.plot(array2,rf_score_f1)
-	plt.xlabel('components')
-	plt.ylabel('f1')
-plt.plot(array2,rf_score_rec)
-	plt.xlabel('components')
-	plt.ylabel('recall')
 
+plt.plot(array2,rf_score_acc)
+plt.xlabel('components')
+plt.ylabel('accuracy')
+
+plt.plot(array2,rf_score_pre)
+plt.xlabel('components')
+plt.ylabel('precision')
+
+plt.plot(array2,rf_score_f1)
+plt.xlabel('components')
+plt.ylabel('f1')
+
+plt.plot(array2,rf_score_rec)
+plt.xlabel('components')
+plt.ylabel('recall')
+
+
+# Multinomial Naive Bayes
 nb_score_acc = []
 nb_score_f1 = []
 nb_score_rec = []
@@ -108,47 +119,17 @@ for x in array:
     nb_score_rec.append(scores['test_Recall'].mean())
 
 plt.plot(array,nb_score_acc)
-	plt.xlabel('components')
-	plt.ylabel('accuracy')
+plt.xlabel('components')
+plt.ylabel('accuracy')
+
 plt.plot(array,nb_score_pre)
-	plt.xlabel('components')
-	plt.ylabel('precision')
+plt.xlabel('components')
+plt.ylabel('precision')
+
 plt.plot(array,nb_score_f1)
-	plt.xlabel('components')
-	plt.ylabel('f1')
+plt.xlabel('components')
+plt.ylabel('f1')
+
 plt.plot(array,nb_score_rec)
-	plt.xlabel('components')
-	plt.ylabel('recall')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+plt.xlabel('components')
+plt.ylabel('recall')
