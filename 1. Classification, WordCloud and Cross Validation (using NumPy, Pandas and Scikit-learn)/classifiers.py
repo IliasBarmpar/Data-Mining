@@ -217,10 +217,10 @@ def addmore(data, stop):
         for wooo in newwords:
             stop.add(wooo)
 
-train_data = pd.read_csv('train_set.csv', sep="\t")
+train_data = pd.read_csv('input/train_set.csv', sep="\t")
 train_data = train_data[0:100]
 
-###################### START TITLE###################
+###################### START TITLE ###################
 alltogether = ['A' for pos in range(len(train_data["Content"]))]
 for k in range(len(train_data["Content"])):
     alltogether[k] = train_data["Content"][k]
