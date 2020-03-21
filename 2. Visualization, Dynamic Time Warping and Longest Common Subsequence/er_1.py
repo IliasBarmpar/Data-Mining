@@ -30,7 +30,7 @@ def Distance(trainline, testline):
 	
 
 trainSet = pd.read_csv(
-'train_set.csv', # replace with the correct path
+'input/train_set.csv', # replace with the correct path
 converters={"Trajectory": literal_eval},
 index_col='tripId'
 )
@@ -110,5 +110,6 @@ for t in range(len(tempSet)):
 		gmap.draw(name)
 		sublist.pop(index)
 		lensub.pop(index)
+
 
 
